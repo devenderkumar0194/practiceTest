@@ -1,0 +1,47 @@
+<%- include('layout/header') %>
+
+  <div class="main">
+      <div class="row">
+
+        <div class="head">
+          <h4>Admin Login </h4>
+        </div>
+
+        <form action="/login" method="post">
+          
+          <div class="lover">
+            <div class="lover-inner left"></div>
+
+            <div class="lover-inner right p-5">
+
+              <% if(error != "") { %>
+                <div class="error">
+                  <p> <%= error %></p>              
+                </div>
+              <% } %>
+                
+                <div class="form-group">
+                  <label for="email">Email</label>
+                  <input type="text" class="form-control" name="email" placeholder="Enter your Email" autocomplete="off">
+                </div>
+
+                <div class="form-group">
+                  <label for="password">Password</label>
+                  <input type="password" class="form-control" name="password" placeholder="Enter your Password" autocomplete="off">
+                </div>
+              
+            </div>
+          </div>
+
+          <div class="botton">
+            <button class="btn btn-submit" type="submit">Sign in</button>
+          </div>
+
+        </form>
+      </div>
+
+  </div>
+
+<%- include('layout/footer') %>
+
+

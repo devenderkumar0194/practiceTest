@@ -1,0 +1,57 @@
+<%- include('../admin/header') %>
+
+
+<div class="container-fluid p-5 bg-primary text-white text-center">
+  <h1>My First Test</h1>
+  <p>Resize this responsive page to see the effect!</p> 
+  <a class="btn btn-secondary" href="/logout">Logout</a>
+</div>
+
+<div class="container mt-5">  
+        <% if(success != "") { %>
+        <div class="alert alert-success">
+            <p> <%= success %></p>              
+        </div>
+        <% } %>
+
+
+        <% if(error != "") { %>
+        <div class="alert alert-danger">
+            <p> <%= error %></p>              
+        </div>
+        <% } %>
+
+        <% if (errors && errors.length > 0) { %>
+        <div class="alert alert-danger">
+            <ul>
+            <% errors.forEach(error => { %>
+                <li><%= error.message %></li>
+            <% }) %>
+            </ul>
+        </div>
+        <% } %>
+
+
+
+    <div class="row">
+        <h3>Products</h3>
+        <div class="col-sm-12" style="text-align: right;">
+                <a href="/add-product" class="btn btn-primary">Add Product</a>
+        </div>
+    </div>
+
+    <div class="row">
+      <% products.forEach((product, key )=>{ %>
+      <div class="col-sm-4">
+        <h3><%= product.name %>  </h3>
+        <% if(product.image != "" &&  product.image != undefined ){ %>
+          <img src="/uploads/<%= product.image %>" alt="Uploaded Image" width="200" />
+        <% }%>
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit...</p>
+        <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris...</p>
+        <a class="btn btn-primary"><%= product.price %></a>
+      </div>
+     <% }) %>
+  </div>
+</div>
+<%- include('../admin/footer') %>
