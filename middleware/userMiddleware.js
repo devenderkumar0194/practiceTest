@@ -28,6 +28,12 @@ const authCheck = async (req, res, next) => {
 
 const webAuthCheck = async (req, res, next) => {
 
+    if (req.path.startsWith('/api')) {
+        return next(); // skip web-only logic
+    }
+
+
+
     const token = req.cookies.token;
     console.log("web auth check");
 

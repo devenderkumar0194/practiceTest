@@ -20,6 +20,7 @@ app.set('view engine', 'ejs');
 
 app.use(cors());
 app.use(cookieParser());
+
 app.use(session({
     secret: 'dsgdfhsgdhwerewrethtrgawe',
     resave: false,
