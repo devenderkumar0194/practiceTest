@@ -21,6 +21,8 @@ apiRouter.get("/product-list", ProductControllerAPI.productList);
 // auth routes 
 apiAuthRouter.get("/dashboard", UserController.dashboard);
 apiAuthRouter.get("/about-us", UserController.aboutUs);
+apiAuthRouter.get("/user-detiails", UserController.userUetiails);
+
 
 
 apiRouter.use('/', userMiddleware.authCheck ,apiAuthRouter);

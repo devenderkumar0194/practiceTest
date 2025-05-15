@@ -179,6 +179,14 @@ const getAdminDetails =  async (req, res) => {
     res.send(200, {status : 200, message : "get admin details successfully! ", data : data });    
 }
 
+const userUetiails = async (req, res) => {
+    
+    const user = await UserModal.findOne({email : req.user.email});
+
+    res.send(200, {status : 200, message : "get user details successfully! ", data : user });    
+
+}
+
 module.exports = {
     register,
     sendOTP, 
@@ -187,9 +195,7 @@ module.exports = {
     login,
     dashboard,
     aboutUs,
-
+    userUetiails,
     getAdminDetails
-    //fileUplaod,
-    // multipleFilesUpload
     
 }

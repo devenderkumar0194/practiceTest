@@ -5,7 +5,8 @@ const authCheck = async (req, res, next) => {
 
     const token = req.headers['authorization'];
     if (!token) {
-        res.send(409, {status : "error", message : "'A token is required for authentication!"});
+        return res.status(409).send({ status: "error", message: "A token is required for authentication!" });
+
     }else {
         try {
             // Remove "Bearer " if present
@@ -18,7 +19,9 @@ const authCheck = async (req, res, next) => {
             // Attach user to request object
             req.user = decoded;
         } catch (err) {
-            res.send(409, {status : "error", message : "Invalid Token"});
+
+            return res.status(409).send({ status: "error", message: "Invalid Token" });
+
         }
     }
     next();
