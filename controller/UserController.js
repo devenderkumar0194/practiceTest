@@ -116,9 +116,11 @@ const forgetPassword = (req, res) => {
 
 const login = async (req, res) => {
 
-     const { email , password } = req.body;
-    
-    if(!email || !password){
+    const { email , password } = req.body;
+
+    try {
+
+        if(!email || !password){
         return res.send(409, {status : "error", message : "Email and Password Field is required!"});
 
     }else {
@@ -142,6 +144,14 @@ const login = async (req, res) => {
         }
         
     }
+
+
+
+    } catch (err) {
+      console.error(err);
+    }
+    
+    
 
 
 
