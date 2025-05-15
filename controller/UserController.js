@@ -114,6 +114,41 @@ const forgetPassword = (req, res) => {
 }
 
 
+const login = async (req, res) => {
+
+     const { email , password } = req.body;
+    
+    if(!email || !password){
+        return res.send(409, {status : "error", message : "Email and Password Field is required!"});
+
+    }else {
+    
+        const user = await UserModal.findOne({email: email});
+        if(!user){
+            return res.send(409, {status : "error", message : "email is not found!!"});
+        }else {
+
+            const match = await Helper.comparePassword(user, password);
+            if(!match){
+                return res.send(409, {status : "error", message : "password is incorrect"});
+            }else {
+
+                const userObj = { id: user.id, email: user.email, type : user.type };
+                const token = jwt.sign(userObj, process.env.JWT_SECRET, { expiresIn: '1h' });  // Token expires in 1 hour
+
+                return res.send(200, {status : 200, message : "login user successfully! ", data : token });
+    
+            }        
+        }
+        
+    }
+
+
+
+}
+
+
+
 const dashboard = (req, res) => {
     res.send("dashboard");
 }
@@ -121,6 +156,8 @@ const dashboard = (req, res) => {
 
 
 const aboutUs = (req, res) => {
+
+
     res.send("aboutUs");
 }
 
@@ -137,7 +174,7 @@ module.exports = {
     sendOTP, 
     otpVerification,
     forgetPassword, 
-    // login,
+    login,
     dashboard,
     aboutUs,
 
